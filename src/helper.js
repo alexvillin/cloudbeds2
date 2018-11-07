@@ -52,32 +52,32 @@ const Helper = {
     isElementBottomVisible(el, offset = 0) {
         let clientWindowHeight = this.getWindowHeight();
         let scrollOffset = this.shift(this.getScrollOffsetHeight());
-        offset = el.offsetTop || offset;
+        offset = offset || el.offsetTop;
         if (clientWindowHeight + scrollOffset >= offset + el.offsetHeight) {
             return true;
         }
     },
     isElementTopVisible(el, offset = 0) {
         let clientWindowHeight = this.getWindowHeight();
-        let scrollOffset = this.unshift(this.getScrollOffsetHeight())
-        offset = el.offsetTop || offset;
-        if (clientWindowHeight + scrollOffset <= offset) {
+        let scrollOffset = this.shift(this.getScrollOffsetHeight())
+        offset = offset || el.offsetTop;
+        if (scrollOffset <= offset) {
             return true;
         }
     },
     isElementRightVisible(el, offset = 0) {
         let clientWindowWidth = this.getWindowWidth();
         let scrollOffset = this.shift(this.getScrollOffsetWidth())
-        offset = el.offsetLeft || offset;
+        offset = offset || el.offsetLeft;
         if (clientWindowWidth + scrollOffset >= offset + el.offsetWidth) {
             return true;
         }
     },
     isElementLeftVisible(el, offset = 0) {
         let clientWindowWidth = this.getWindowWidth();
-        let scrollOffset = this.unshift(this.getScrollOffsetWidth())
-        offset = el.offsetLeft || offset;
-        if (clientWindowWidth + scrollOffset <= offset) {
+        let scrollOffset = this.shift(this.getScrollOffsetWidth())
+        offset = offset || el.offsetLeft;
+        if (scrollOffset <= offset) {
             return true;
         }
     },
