@@ -27,33 +27,9 @@
         },
         mounted: function() {
             let box = this.$el.querySelector('.box');
-            
             this.rowsCounter = Math.ceil(this.screenH / 100);//box.clientHeight);
             this.colsCounter = Math.ceil(this.screenW / 100);//box.clientWidth);
-            
-//console.log(box);
         },  
-        computed:{
-//            rows(){
-//                return Array(this.rowsCounter)
-//            },
-//            cols(){
-//                return Array(this.colsCounter)
-//            },
-        },
-//        mounted: function() {
-            //contain visible part of screen
-//        },
-        methods: {
-            //            timeout(fn) {
-            //                if (this.delay) {
-            //                    setTimeout(fn, 500);
-            //                } else {
-            //                    fn();
-            //                }
-            //            },
-
-        },
     }
 
 </script>

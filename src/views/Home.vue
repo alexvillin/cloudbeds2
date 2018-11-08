@@ -26,10 +26,6 @@
         },
         data: function() {
             return {
-//                indexX: 1,
-//                indexY: 1,
-//                oldX:0,
-//                oldY:0,
                 offsetX: 0,                                                                                                                                                                                                                                                                                                                                                     
                 offsetY: 0,
                 containerH: 1,
@@ -42,27 +38,13 @@
         },
         mounted: function() {
             window.addEventListener('scroll', this.updateCounters)
-//            this.init();
-//                let box = this.createBox();
-//                let box = this.createBox();
-//            this.$el.appendChild(box)
-//            console.log(box.clientHeight);
-//                    this.stack.push(this.$el.lastChild);
             this.$nextTick(() => {
                 let container = this.$el.lastChild;
-//            let box = container.lastChild;
-//            this.rows = Math.ceil(this.containerH / box.clientHeight)
-//            this.rows = Math.ceil(this.containerW / box.clientWidth)
-                    this.containerH = container.offsetHeight;
-                    this.containerW = container.offsetWidth;
+                this.containerH = container.offsetHeight;
+                this.containerW = container.offsetWidth;
                 this.updateCounters();
-            this.redraw();
+                this.redraw();
             })
-//            this.indexX = 2;
-//            this.indexY = 2;
-//                    this.$el.lastChild;
-//                this.createContainer();
-//            let throttleUpdate = this.lodash.throttle(this.updateCounters, 500)
         },
         computed: {
             indexX(){
@@ -116,35 +98,10 @@
         },
         watch: {
             indexX(newVal){
-//                this.createContainer(this.indexX, this.indexY)
-//                this.fillAround()
-//                if(newVal - this.oldX >= this.containerW){
-//                    this.matrix.forEach((i) => i.push(null))
-//                    this.indexX++
-//                    this.redraw();
-//                    this.oldX = newVal;
-//                }
-//                if(this.oldX - newVal >= this.containerW && this.indexX){
-//                    this.indexX--
-//                    this.redraw();
-//                    this.oldX = newVal;
-//                }
-                    this.redraw();
+                this.redraw();
             },
             indexY(newVal){
-//                if(newVal - this.oldY >= this.containerH){
-//                    this.matrix.push(new Array(this.indexX).fill(null))
-//                    this.indexY++
-//                    this.redraw();
-//                    this.oldY = newVal;
-//                }
-//                if(this.oldY - newVal >= this.containerH && this.indexY){
-//                    this.indexY--
-//                    this.redraw();
-//                    this.oldY = newVal;
-//                    console.log("!!!!: "+newVal);
-//                }
-                    this.redraw();
+                this.redraw();
             },
             stack(val) {
                 if(val.length > 12){

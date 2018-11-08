@@ -19,9 +19,6 @@
             index: {
                 type: Number
             },
-            scroll: {
-                type: Function,
-            }
         },
         data: function(){
             return {
@@ -31,6 +28,7 @@
         },
         methods:{
             save(){
+                //set container[][][index]
                 console.log("Index: "+ this.index + " Value: " + this.number);
             },
             filter($e){
