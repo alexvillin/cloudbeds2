@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
-        <Ruler :amount="indexX + 2" position="top" />
-        <Ruler :amount="indexY + 2" position="left" />
+        <Ruler :amount="(indexX+1) * containerW /100" position="top" />
+        <Ruler :amount="(indexY+1) * containerH /100" position="left" />
         <Container :key="1" />
     </div>
 </template>
@@ -28,8 +28,8 @@
             return {
                 offsetX: 0,                                                                                                                                                                                                                                                                                                                                                     
                 offsetY: 0,
-                containerH: 1,
-                containerW: 1,
+                containerH: 100,
+                containerW: 100,
                 stack: [],
                 matrix: new Array(1000).fill(null).map(() => {
                     return new Array(1000).fill(null);
@@ -72,7 +72,8 @@
             createBox() {
                 let box = new ContainerComponent({
                     propsData: {
-//                        index: 
+                        indexX: this.indexX,
+                        indexY: this.indexY, 
                     },
                 }).$mount();
                 return box.$el;

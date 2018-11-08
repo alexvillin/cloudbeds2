@@ -1,7 +1,10 @@
 <template>
     <div class="container">
         <div class="container-flex" v-for="(r, rindex) in rowsCounter" :key="rindex">
-            <Box v-for="(c, cindex) in colsCounter" :index="colsCounter * rindex + ++cindex" :key="cindex"/>
+            <Box v-for="(c, cindex) in colsCounter" 
+                :index="cindex * rindex + cindex"
+                :containerIndex="containerIndex"
+                :key="cindex"/>
         </div>
     </div>
 </template>
@@ -15,7 +18,8 @@
             Box,
         },
         props: {
-
+            indexX: [Number],
+            indexY: [Number]
         },
         data: function() {
             return {
@@ -25,10 +29,14 @@
                 screenW: Helper.getWindowWidth(),
             }
         },
+        computed:{
+            containerIndex(){
+                return this.indexX * this.indexY + this.indexX
+            }
+        },
         mounted: function() {
-            let box = this.$el.querySelector('.box');
-            this.rowsCounter = Math.ceil(this.screenH / 100);//box.clientHeight);
-            this.colsCounter = Math.ceil(this.screenW / 100);//box.clientWidth);
+            this.rowsCounter = Math.ceil(this.screenH / 100);
+            this.colsCounter = Math.ceil(this.screenW / 100);
         },  
     }
 

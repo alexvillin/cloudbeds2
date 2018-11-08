@@ -49,8 +49,8 @@
 /*        position: absolute;*/
         background-color: #C5CAE9;
         padding: 5px;
-/*
 
+/*
         &:after {
             content: attr(index);
             top: 0;
