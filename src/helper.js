@@ -15,10 +15,10 @@ const Helper = {
     getElementWidth(el) {
         return el.clientWidth;
     },
-    getScrollOffsetHeight() {
+    getScrollOffsetY() {
         return window.pageYOffset || document.documentElement.scrollTop;
     },
-    getScrollOffsetWidth() {
+    getScrollOffsetX() {
         return window.pageXOffset || document.documentElement.scrollLeft
     },
     formatDate(val) {
@@ -58,7 +58,6 @@ const Helper = {
         }
     },
     isElementTopVisible(el, offset = 0) {
-        let clientWindowHeight = this.getWindowHeight();
         let scrollOffset = this.shift(this.getScrollOffsetHeight())
         offset = offset || el.offsetTop;
         if (scrollOffset <= offset) {
@@ -74,7 +73,6 @@ const Helper = {
         }
     },
     isElementLeftVisible(el, offset = 0) {
-        let clientWindowWidth = this.getWindowWidth();
         let scrollOffset = this.shift(this.getScrollOffsetWidth())
         offset = offset || el.offsetLeft;
         if (scrollOffset <= offset) {
@@ -82,15 +80,49 @@ const Helper = {
         }
     },
     shift(val) {
-        return this.isLoadBeforehand 
-            ? val + this.shiftOffset 
-            : val;
+        return this.isLoadBeforehand ?
+            val + this.shiftOffset :
+            val;
     },
-    unshift(val) {
-        return this.isLoadBeforehand 
-            ? val - this.shiftOffset
-            : val;
-    },
+    /**
+    *   Spiral matrix algorythm
+        Calculate next step coords and run callback(x,y)
+        x: Number; start position
+        y: Number; start position
+        fn: Function; callback
+        level: Number; radius
+    */
+    spiralMatrix(x = 0, y = 0, fn, level = 1) {
+        let op = [1, -1, 1];
+        //set start position
+        let startX = ++x;
+        let startY = --y;
+        let counter = 1;
+        while (counter <= level) {
+            x = startX;
+            y = startY;
+            for (let i = 0; i < counter * 2; i++) {
+                let inc = op[i];
+                let ix = counter * 2;
+                let iy = counter * 2;
+                while (iy) {
+                    y += inc;
+                    iy--;
+                    fn(x, y);
+                }
+                //shift operation
+                inc = op[i + 1];
+                while (ix) {
+                    x += inc;
+                    ix--;
+                    fn(x, y);
+                }
+            }
+            counter++;
+            startX += counter;
+            startY -= counter;
+        }
+    }
 }
 
 export default Helper;

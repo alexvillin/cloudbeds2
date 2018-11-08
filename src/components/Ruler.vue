@@ -63,11 +63,11 @@
             shiftPosition() {
                 let offset;
                 if (this.isTop) {
-                    offset = Helper.getScrollOffsetWidth();
+                    offset = Helper.getScrollOffsetX();
                     this.$refs.stack.style.transform = `translateX(-${offset}px)`;
                 }
                 if (this.isLeft) {
-                    offset = Helper.getScrollOffsetHeight();
+                    offset = Helper.getScrollOffsetY();
                     this.$refs.stack.style.transform = `translateY(-${offset}px)`;
                 }
             },

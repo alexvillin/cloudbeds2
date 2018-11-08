@@ -8,7 +8,7 @@
     <div class="box" @scroll.native="scroll">
         <input type="checkbox" v-model.lazy="checked"/>
         <input type="number" v-model="number" :disabled="checked" @input="filter"/>
-        <button v-show="checked" @click="save">Save</button>
+        <button :disabled="!checked" @click="save">Save</button>
     </div>
 </template>
 <script>
@@ -48,7 +48,7 @@
         width: 100px;
         border: 4px solid white;
         overflow: hidden;
-        position: absolute;
+/*        position: absolute;*/
         background-color: #C5CAE9;
         padding: 5px;
 /*
