@@ -2,6 +2,50 @@
 
 Watch https://alexvillin.github.io/cloudbeds2/#/
 
+Algorytm draws container with screen dimentions and 8 containers around filled by spiral from right top
+When user scrolls it, new containers are added old ones are deleted
+Use control matrix for container existing checking
+Use Vue, Vuex
+
+## Main Components:
+- Container: contain boxes depends on screen sizes, one box = 100x100px
+```html
+  <Container :indexX="x" :indexY="y" />
+```
+```
+    Container component
+    Props: 
+        indexX: Number; //current scroll position index x asix
+        indexY: Number; //current scroll position index y asix
+```
+- Box
+```html
+  <Box :index="i" :containerIndex="j" :containerData="vuex.state.data"/>
+```
+```
+  Props: 
+    index: String; //unique box id in the scope of container
+    containerIndex: String; //unique container id
+    containerData: Object; //pass data for increase vuex calls (optional)
+  ```
+- Ruler
+```html
+   <Ruler :amount="counter" position="top" step="100" />
+```
+```
+  Props: 
+     position: String; //['top', 'left']
+     step: Number; // in pixels ruler step (optionsl)
+     amount: Number; //amount of blocks in parent scope
+ ```
+ ### Project setup
+ 
+ ```
+ git clone https://github.com/alexvillin/cloudbeds2.git
+cd ./cloudbeds2
+npm install
+npm run serve
+ ```
 
 ## Task
 
