@@ -2,10 +2,10 @@
 
 Watch https://alexvillin.github.io/cloudbeds2/#/
 
-Algorytm draws container with screen dimentions and 8 containers around filled by spiral from right top
-When user scrolls it, new containers are added old ones are deleted
-Use control matrix for container existing checking
-Use Vue, Vuex
+Algorytm draws container with screen dimentions and 8 containers around filled by spiral from right top. 
+When user scrolls it, new containers are added old ones are deleted.
+Used control matrix for container existing checking.
+Used Vue, Vuex.
 
 ## Main Components:
 - Container: contain boxes depends on screen sizes, one box = 100x100px
