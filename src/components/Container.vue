@@ -2,9 +2,9 @@
     <div class="container">
         <div class="container-flex" v-for="(r, rindex) in rowsCounter" :key="rindex">
             <Box v-for="(c, cindex) in colsCounter" 
-                :index="cindex * rindex + cindex"
+                :index="rindex + '' + cindex"
                 :containerIndex="containerIndex"
-                :key="cindex"/>
+                :key="cindex" />
         </div>
     </div>
 </template>
@@ -18,8 +18,8 @@
             Box,
         },
         props: {
-            indexX: [Number],
-            indexY: [Number]
+            indexX: {type: Number, default: 0},
+            indexY: {type:Number, default: 0}
         },
         data: function() {
             return {
@@ -31,10 +31,10 @@
         },
         computed:{
             containerIndex(){
-                return this.indexX * this.indexY + this.indexX
-            }
+                return String(this.indexX) + String(this.indexY)
+            },
         },
-        mounted: function() {
+        created(){
             this.rowsCounter = Math.ceil(this.screenH / 100);
             this.colsCounter = Math.ceil(this.screenW / 100);
         },  

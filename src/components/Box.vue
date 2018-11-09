@@ -1,35 +1,59 @@
 <!--
     Box component
     Options: 
-        index: unique id
+        index: unique box id in the scope of container
+        containerIndex: String; unique container id
+        containerData: Object; pass data for increase vuex calls
 -->
 
 <template>
-    <div class="box" @scroll.native="scroll">
+    <div class="box" >
         <input type="checkbox" v-model.lazy="checked"/>
         <input type="number" v-model="number" :disabled="checked" @input="filter"/>
-        <button :disabled="!checked" @click="save">Save</button>
+        <button v-show="checked || number" @click="save">Save</button>
     </div>
 </template>
 <script>
+
     export default {
         name: 'Box',
         components: {},
         props: {
             index: {
-                type: Number
+                type: String,
+                required: true
             },
+            containerIndex: {
+                type: String,
+                required: true
+            },
+            containerData: {
+                type: Object,
+                default: () => Object()
+            }
         },
         data: function(){
             return {
                 checked: false,
-                number: "",
+                number: ""
             }
+        },
+        created(){
+            this.number = this.$store.state.data[this.key] || "";
+        },
+        mounted(){
+        },
+        computed:{
+            key(){
+                return this.containerIndex + this.index},
         },
         methods:{
             save(){
-                //set container[][][index]
-                console.log("Index: "+ this.index + " Value: " + this.number);
+                this.$store.commit('setData', {
+                    key: this.key,
+                    data: this.number
+                })
+                console.log(this.$store.state.data);
             },
             filter($e){
                 $e.target.value = this.number.replace(/\D/g, '');

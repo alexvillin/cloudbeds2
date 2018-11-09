@@ -69,12 +69,13 @@
                 this.offsetX = Helper.getScrollOffsetX();
                 this.offsetY = Helper.getScrollOffsetY();
             },
-            createBox() {
+            createBox(x = 0, y = 0) {
                 let box = new ContainerComponent({
                     propsData: {
-                        indexX: this.indexX,
-                        indexY: this.indexY, 
+                        indexX: x,
+                        indexY: y,
                     },
+                    parent: this
                 }).$mount();
                 return box.$el;
             },
@@ -84,7 +85,7 @@
                 }
                 let offsetX = this.containerW * x;
                 let offsetY = this.containerH * y;
-                let container = this.createBox();
+                let container = this.createBox(x, y);
                 container.style.transform = `translate(${offsetX}px, ${offsetY}px)`
                 //mount element
                 this.$el.appendChild(container);
@@ -98,10 +99,10 @@
             },
         },
         watch: {
-            indexX(newVal){
+            indexX(){
                 this.redraw();
             },
-            indexY(newVal){
+            indexY(){
                 this.redraw();
             },
             stack(val) {
