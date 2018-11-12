@@ -15,8 +15,8 @@ Used Vue, Vuex.
 ```
     Container component
     Props: 
-        indexX: Number; //current scroll position index x asix
-        indexY: Number; //current scroll position index y asix
+        indexX: Number; //current scroll position index x axis
+        indexY: Number; //current scroll position index y axis
 ```
 - Box
 ```html
